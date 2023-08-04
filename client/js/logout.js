@@ -1,18 +1,22 @@
 import { getNode, getNodes, isNull } from "../lib/index.js";
 
-const logout = getNode(".logout__buttons");
-const [btnYes, btnNo] = getNodes(".logout__buttons > button");
+// 로그아웃 (IIFE)
+(function () {
+  const logout = getNode(".logout__buttons");
+  const [btnYes, btnNo] = getNodes(".logout__buttons > button");
 
-function handlerLogout(e) {
-  e.preventDefault();
-  const target = e.target.closest("button");
-  if (isNull(target)) return;
+  function handlerLogout(e) {
+    e.preventDefault();
+    const target = e.target.closest("button");
 
-  if (target === btnYes) {
-    window.location.replace("./landing.html");
-    localStorage.removeItem("currentUniqueID");
+    if (isNull(target)) return;
+
+    if (target === btnYes) {
+      window.location.replace("./landing.html");
+      localStorage.removeItem("currentUniqueID");
+    }
+    if (target === btnNo) window.history.back();
   }
-  if (target === btnNo) window.history.back();
-}
 
-logout.addEventListener("click", handlerLogout);
+  logout.addEventListener("click", handlerLogout);
+})();
