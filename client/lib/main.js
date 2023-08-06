@@ -1,4 +1,4 @@
-import { tiger, getNode as $, insertLast } from "./index.js";
+import { tiger, getNode as $, insertLast, setStorage } from "./index.js";
 
 const recommend = $(".recommend");
 const quickVOD = $("#quickVOD");
@@ -170,3 +170,8 @@ function swiper() {
     },
   });
 }
+
+// 로그인 초기 설정 (IIFE)
+(function initId() {
+  return setStorage("currentID", "likelion02");
+})();
